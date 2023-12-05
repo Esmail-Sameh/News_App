@@ -1,0 +1,20 @@
+base url: https://newsapi.org/
+
+method url: v2/top-headlines?
+
+quary: country=eg&category=business&apikey=65f7f665ec76449fa7dc7c0069f040ca
+
+
+https://newsapi.org/v2/top-headlines?country=eg&category=business&apikey=65f7f556ec76449fa7dc7c0069f040ca
+
+base url: https://newsapi.org/
+
+method url: v2/top-headlines?
+
+quary: country=eg&category=business&apikey=65f7f556ec76449fa7dc7c0069f040ca
+
+///////////////////////////////////////////////
+https://newsapi.org/
+v2/top-headlines?
+
+country=us&category=business&apiKey=d17ebe0c22724983be64e23c7d2af76b
