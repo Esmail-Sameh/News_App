@@ -1,5 +1,3 @@
-import 'package:news_app/shared/network/remote.dart';
-
 import '../constant/app_imports.dart';
 
 class AppCubit extends Cubit<AppStates> {
@@ -20,7 +18,6 @@ class AppCubit extends Cubit<AppStates> {
     const SportsScreen(),
     const SciencesScreen(),
   ];
-
   List<String> appTitle = [
     "Business",
     "Sports",
@@ -38,15 +35,15 @@ class AppCubit extends Cubit<AppStates> {
     await DioHelper.getData(
       url: "v2/top-headlines",
       query: {
-        'country':'eg',
+        'country':'us',
         'category':'business',
         'apiKey':'92efe8b0717e4c8c8377ea5082ccd340',
       },
     ).then(
       (value){
-        emit(AppGetBusinessDataSuccess());
         busniess = value.data['articles'];
-        print(busniess[2]['title']);
+        emit(AppGetBusinessDataSuccess());
+        print(busniess.length.toString());
       }
     ).catchError(
         (error){
@@ -55,6 +52,5 @@ class AppCubit extends Cubit<AppStates> {
         }
     );
   }
-
 
 }

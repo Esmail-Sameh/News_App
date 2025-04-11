@@ -10,5 +10,6 @@ export 'package:news_app/modules/sciences/sciences_screen.dart';
 export 'package:news_app/modules/sports/sports_screen.dart';
 export 'package:news_app/shared/cubit/app_observer.dart';
 export 'package:dio/dio.dart';
+export 'package:news_app/shared/network/remote.dart';
 
 

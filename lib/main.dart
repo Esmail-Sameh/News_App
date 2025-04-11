@@ -1,8 +1,8 @@
 import 'package:news_app/shared/constant/app_imports.dart';
-import 'package:news_app/shared/network/remote.dart';
 
 
-void main() {
+
+void main(){
   Bloc.observer = const SimpleBlocObserver();
   DioHelper.init();
   runApp(const MyApp());

@@ -6,7 +6,7 @@ class HomeLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AppCubit(),
+      create: (context) => AppCubit()..getBusinessData(),
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -29,7 +29,9 @@ class HomeLayout extends StatelessWidget {
                 cubit.narBarChange(index);
               },
             ),
-            floatingActionButton: FloatingActionButton(onPressed: (){cubit.getBusinessData();}),
+            floatingActionButton: FloatingActionButton(onPressed: () {
+              cubit.getBusinessData();
+            }),
           );
         },
       ),
