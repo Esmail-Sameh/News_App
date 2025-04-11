@@ -8,5 +8,7 @@ export 'package:news_app/shared/cubit/app_states.dart';
 export 'package:news_app/modules/business/business_screen.dart';
 export 'package:news_app/modules/sciences/sciences_screen.dart';
 export 'package:news_app/modules/sports/sports_screen.dart';
+export 'package:news_app/shared/cubit/app_observer.dart';
+export 'package:dio/dio.dart';
 
 

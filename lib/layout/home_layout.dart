@@ -29,6 +29,7 @@ class HomeLayout extends StatelessWidget {
                 cubit.narBarChange(index);
               },
             ),
+            floatingActionButton: FloatingActionButton(onPressed: (){cubit.getBusinessData();}),
           );
         },
       ),

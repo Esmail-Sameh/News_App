@@ -1,6 +1,10 @@
 import 'package:news_app/shared/constant/app_imports.dart';
+import 'package:news_app/shared/network/remote.dart';
+
 
 void main() {
+  Bloc.observer = const SimpleBlocObserver();
+  DioHelper.init();
   runApp(const MyApp());
 }
 
@@ -12,6 +16,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: HomeLayout(),
       theme: ThemeData(
+        primarySwatch: Colors.deepOrange,
+        primaryColor: Colors.deepOrange,
         scaffoldBackgroundColor: Colors.white,
         appBarTheme: const AppBarTheme(
           color: Colors.white,
@@ -33,7 +39,9 @@ class MyApp extends StatelessWidget {
             backgroundColor: Colors.white,
             elevation: 20.0,
             unselectedItemColor: Colors.grey[400],
-            selectedItemColor: Colors.deepOrange),
+            selectedItemColor: Colors.deepOrange,
+        ),
+
       ),
     );
   }
