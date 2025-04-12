@@ -9,9 +9,17 @@ class AppCubit extends Cubit<AppStates> {
 
   List<BottomNavigationBarItem> item = [
     const BottomNavigationBarItem(
-        icon: Icon(Icons.business), label: "Business"),
-    const BottomNavigationBarItem(icon: Icon(Icons.sports), label: "Sports"),
-    const BottomNavigationBarItem(icon: Icon(Icons.science), label: "Science"),
+      icon: Icon(Icons.business),
+      label: AppString.appBusinessScreenTitleText,
+    ),
+    const BottomNavigationBarItem(
+      icon: Icon(Icons.sports),
+      label: AppString.appSportsScreenTitleText,
+    ),
+    const BottomNavigationBarItem(
+      icon: Icon(Icons.science),
+      label: AppString.appScienceScreenTitleText,
+    ),
   ];
   List<Widget> screens = [
     const BusinessScreen(),
@@ -19,17 +27,15 @@ class AppCubit extends Cubit<AppStates> {
     const SciencesScreen(),
   ];
   List<String> appTitle = [
-    "Business",
-    "Sports",
-    "Sciences",
+    AppString.appBusinessScreenTitleText,
+    AppString.appSportsScreenTitleText,
+    AppString.appScienceScreenTitleText,
   ];
 
   void narBarChange(int index) {
     curentIndex = index;
-    // if(curentIndex == 1)
-    //   getSportsData();
-    // if(curentIndex == 2)
-    //   getSciencesData();
+    if (curentIndex == 1) getSportsData();
+    if (curentIndex == 2) getSciencesData();
     emit(AppButtonNavStates());
   }
 
@@ -37,11 +43,11 @@ class AppCubit extends Cubit<AppStates> {
   void getBusinessData() async {
     emit(AppGetBusinessLodingStates());
     await DioHelper.getData(
-      url: "v2/top-headlines",
+      url: METHOD,
       query: {
-        'country': 'us',
-        'category': 'business',
-        'apiKey': '92efe8b0717e4c8c8377ea5082ccd340',
+        AppString.country: 'us',
+        AppString.category: AppString.businessCategory,
+        AppString.apiKey: APIKEY,
       },
     ).then((value) {
       busniess = value.data['articles'];
@@ -57,41 +63,49 @@ class AppCubit extends Cubit<AppStates> {
 
   List<dynamic> sports = [];
   void getSportsData() async {
-    emit(AppGetSportsLodingStates());
-    DioHelper.getData(url: 'v2/top-headlines', query: {
-      'country': 'us',
-      'category': 'sports',
-      'apiKey': '92efe8b0717e4c8c8377ea5082ccd340',
-    }).then(
-      (value) {
-        sports = value.data['articles'];
-        emit(AppGetSportsDataSuccess());
-      },
-    ).catchError(
-      (error) {
-        emit(AppGetSportsDataError(error.toString()));
-        //print(error.toString);
-      },
-    );
+    if (sports.length == 0) {
+      emit(AppGetSportsLodingStates());
+      DioHelper.getData(url: METHOD, query: {
+        AppString.country : 'us',
+        AppString.category : AppString.sportsCategory,
+        AppString.apiKey : APIKEY,
+      }).then(
+        (value) {
+          sports = value.data['articles'];
+          emit(AppGetSportsDataSuccess());
+        },
+      ).catchError(
+        (error) {
+          emit(AppGetSportsDataError(error.toString()));
+          //print(error.toString);
+        },
+      );
+    } else {
+      emit(AppGetSportsDataSuccess());
+    }
   }
 
   List<dynamic> sciences = [];
   void getSciencesData() async {
-    emit(AppGetSciencesLodingStates());
-    DioHelper.getData(url: 'v2/top-headlines', query: {
-      'country': 'us',
-      'category': 'science',
-      'apiKey': '92efe8b0717e4c8c8377ea5082ccd340',
-    }).then(
-      (value) {
-        emit(AppGetSciencesDataSuccess());
-        sciences = value.data['articles'];
-      },
-    ).catchError(
-      (error) {
-        emit(AppGetSciencesDataError(error.toString()));
-        //print(error.toString);
-      },
-    );
+    if (sciences.length == 0) {
+      emit(AppGetSciencesLodingStates());
+      DioHelper.getData(url: METHOD, query: {
+        AppString.country: 'us',
+        AppString.category: AppString.scienceCategory,
+        AppString.apiKey: APIKEY,
+      }).then(
+        (value) {
+          emit(AppGetSciencesDataSuccess());
+          sciences = value.data['articles'];
+        },
+      ).catchError(
+        (error) {
+          emit(AppGetSciencesDataError(error.toString()));
+          //print(error.toString);
+        },
+      );
+    } else {
+      emit(AppGetSciencesDataSuccess());
+    }
   }
 }

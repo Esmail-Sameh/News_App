@@ -6,7 +6,7 @@ class HomeLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AppCubit()..getBusinessData()..getSportsData()..getSciencesData(),
+      create: (context) => AppCubit()..getBusinessData(),
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -21,7 +21,10 @@ class HomeLayout extends StatelessWidget {
                 ),
               ],
             ),
-            body: cubit.screens[cubit.curentIndex],
+            body: Padding(
+              padding: const EdgeInsets.all(16),
+              child: cubit.screens[cubit.curentIndex],
+            ),
             bottomNavigationBar: BottomNavigationBar(
               items: cubit.item,
               currentIndex: cubit.curentIndex,

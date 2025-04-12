@@ -1,8 +1,6 @@
 import 'package:news_app/shared/constant/app_imports.dart';
 
-
-
-void main(){
+void main() {
   Bloc.observer = const SimpleBlocObserver();
   DioHelper.init();
   runApp(const MyApp());
@@ -36,12 +34,11 @@ class MyApp extends StatelessWidget {
           ),
         ),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
-            backgroundColor: Colors.white,
-            elevation: 20.0,
-            unselectedItemColor: Colors.grey[400],
-            selectedItemColor: Colors.deepOrange,
+          backgroundColor: Colors.white,
+          elevation: 20.0,
+          unselectedItemColor: Colors.grey[400],
+          selectedItemColor: Colors.deepOrange,
         ),
-
       ),
     );
   }

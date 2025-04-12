@@ -1,6 +1,5 @@
 import '../constant/app_imports.dart';
 
-///*****  Busniess Screen  *****///
 Widget articlesItem(context, data) => Row(
       children: [
         /// image ///
@@ -20,6 +19,7 @@ Widget articlesItem(context, data) => Row(
         const SizedBox(
           width: 20,
         ),
+
         /// title ///
         Expanded(
           child: Container(
@@ -37,6 +37,7 @@ Widget articlesItem(context, data) => Row(
                     ),
                   ),
                 ),
+
                 ///  Date  ///
                 Text(
                   "${data['publishedAt']}",
@@ -54,4 +55,12 @@ Widget articlesItem(context, data) => Row(
       ],
     );
 
+Widget myDivider() => const Padding(
+      padding: EdgeInsets.symmetric(vertical: 15),
+      child: Divider(
+        color: Colors.grey,
+        height: 3.0,
+      ),
+    );
 
+//Widget

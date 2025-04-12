@@ -1,7 +1,3 @@
-/// baseUrl : https://newsapi.org/
-///
-import 'package:news_app/shared/constant/end_point.dart';
-
 import '../constant/app_imports.dart';
 
 class DioHelper {
