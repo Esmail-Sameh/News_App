@@ -1,7 +1,7 @@
 import '../constant/app_imports.dart';
 
-Widget busniessItem(context,data) => Row(
-
+///*****  Busniess Screen  *****///
+Widget articlesItem(context, data) => Row(
       children: [
         /// image ///
         Container(
@@ -17,32 +17,33 @@ Widget busniessItem(context,data) => Row(
             ),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 20,
         ),
         /// title ///
         Expanded(
           child: Container(
             height: MediaQuery.of(context).size.height / 7,
-            child:  Column(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
                   child: Text(
                     "${data['title']}",
                     maxLines: 2,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 18,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ),
+                ///  Date  ///
                 Text(
                   "${data['publishedAt']}",
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontSize: 18,
+                  style: const TextStyle(
+                    fontSize: 14,
                     color: Colors.grey,
                   ),
                 ),
@@ -52,3 +53,5 @@ Widget busniessItem(context,data) => Row(
         ),
       ],
     );
+
+
