@@ -18,7 +18,7 @@ class SciencesScreen extends StatelessWidget {
             itemCount: list.length,
           ),
           fallback: (context) =>
-              Center(child: const CircularProgressIndicator()),
+              lodingItem(context),
         );
       },
     );

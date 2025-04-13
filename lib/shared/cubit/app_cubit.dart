@@ -1,7 +1,7 @@
 import '../constant/app_imports.dart';
 
 class AppCubit extends Cubit<AppStates> {
-  AppCubit() : super(AppInitialStates());
+  AppCubit() : super(AppInitialState());
 
   static AppCubit get(context) => BlocProvider.of(context);
 
@@ -36,12 +36,12 @@ class AppCubit extends Cubit<AppStates> {
     curentIndex = index;
     if (curentIndex == 1) getSportsData();
     if (curentIndex == 2) getSciencesData();
-    emit(AppButtonNavStates());
+    emit(AppButtonNavState());
   }
 
   List<dynamic> busniess = [];
   void getBusinessData() async {
-    emit(AppGetBusinessLodingStates());
+    emit(AppGetBusinessLodingState());
     await DioHelper.getData(
       url: METHOD,
       query: {
@@ -51,20 +51,21 @@ class AppCubit extends Cubit<AppStates> {
       },
     ).then((value) {
       busniess = value.data['articles'];
-      emit(AppGetBusinessDataSuccess());
+      emit(AppGetBusinessDataSuccessState());
     }).catchError((error) {
       emit(
-        AppGetBusinessDataError(
+        AppGetBusinessDataErrorState(
           error.toString(),
         ),
       );
+      print(error.toString());
     });
   }
 
   List<dynamic> sports = [];
   void getSportsData() async {
     if (sports.length == 0) {
-      emit(AppGetSportsLodingStates());
+      emit(AppGetSportsLodingState());
       DioHelper.getData(url: METHOD, query: {
         AppString.country : 'us',
         AppString.category : AppString.sportsCategory,
@@ -72,40 +73,48 @@ class AppCubit extends Cubit<AppStates> {
       }).then(
         (value) {
           sports = value.data['articles'];
-          emit(AppGetSportsDataSuccess());
+          emit(AppGetSportsDataSuccessState());
         },
       ).catchError(
         (error) {
-          emit(AppGetSportsDataError(error.toString()));
+          emit(AppGetSportsDataErrorState(error.toString()));
           //print(error.toString);
         },
       );
     } else {
-      emit(AppGetSportsDataSuccess());
+      emit(AppGetSportsDataSuccessState());
     }
   }
 
   List<dynamic> sciences = [];
   void getSciencesData() async {
     if (sciences.length == 0) {
-      emit(AppGetSciencesLodingStates());
+      emit(AppGetSciencesLodingState());
       DioHelper.getData(url: METHOD, query: {
         AppString.country: 'us',
         AppString.category: AppString.scienceCategory,
         AppString.apiKey: APIKEY,
       }).then(
         (value) {
-          emit(AppGetSciencesDataSuccess());
+          emit(AppGetSciencesDataSuccessState());
           sciences = value.data['articles'];
         },
       ).catchError(
         (error) {
-          emit(AppGetSciencesDataError(error.toString()));
+          emit(AppGetSciencesDataErrorState(error.toString()));
           //print(error.toString);
         },
       );
     } else {
-      emit(AppGetSciencesDataSuccess());
+      emit(AppGetSciencesDataSuccessState());
     }
   }
+
+  bool isDark = false;
+  void changeAppMode(){
+    isDark = !isDark;
+    emit(AppChangeModeState());
+  }
+
+
 }

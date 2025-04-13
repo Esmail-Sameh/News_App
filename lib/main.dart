@@ -1,5 +1,6 @@
 import 'package:news_app/shared/constant/app_imports.dart';
 
+
 void main() {
   Bloc.observer = const SimpleBlocObserver();
   DioHelper.init();
@@ -11,34 +12,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: HomeLayout(),
-      theme: ThemeData(
-        primarySwatch: Colors.deepOrange,
-        primaryColor: Colors.deepOrange,
-        scaffoldBackgroundColor: Colors.white,
-        appBarTheme: const AppBarTheme(
-          color: Colors.white,
-          elevation: 0.0,
-          titleTextStyle: TextStyle(
-            color: Colors.black,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
-          iconTheme: IconThemeData(
-            color: Colors.black,
-          ),
-          systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: Colors.white,
-            statusBarIconBrightness: Brightness.dark,
-          ),
-        ),
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          backgroundColor: Colors.white,
-          elevation: 20.0,
-          unselectedItemColor: Colors.grey[400],
-          selectedItemColor: Colors.deepOrange,
-        ),
+    return BlocProvider(
+      create: (context) => AppCubit()..getBusinessData(),
+      child: BlocConsumer<AppCubit, AppStates>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          var cubit = AppCubit.get(context);
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            home: HomeLayout(),
+            theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
+            themeMode: cubit.isDark ?ThemeMode.dark :ThemeMode.light,
+          );
+        },
       ),
     );
   }

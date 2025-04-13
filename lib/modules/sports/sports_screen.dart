@@ -20,7 +20,7 @@ class SportsScreen extends StatelessWidget {
             itemCount: list.length,
           ),
           fallback: (context) =>
-              const Center(child: CircularProgressIndicator()),
+              lodingItem(context),
         );
       },
     );

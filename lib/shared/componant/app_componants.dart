@@ -1,3 +1,5 @@
+import 'package:news_app/shared/constant/app_colors.dart';
+
 import '../constant/app_imports.dart';
 
 Widget articlesItem(context, data) => Row(
@@ -31,10 +33,7 @@ Widget articlesItem(context, data) => Row(
                   child: Text(
                     "${data['title']}",
                     maxLines: 2,
-                    style: const TextStyle(
-                      fontSize: 18,
-                      overflow: TextOverflow.ellipsis,
-                    ),
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 ),
 
@@ -63,4 +62,19 @@ Widget myDivider() => const Padding(
       ),
     );
 
-//Widget
+Widget lodingItem(context) => const Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        CircularProgressIndicator(
+          color: AppColors.primaryColor,
+        ),
+        SizedBox(
+          height: 7,
+        ),
+        Text(
+          "Loding",
+          style: TextStyle(fontSize: 15),
+        ),
+      ],
+    ));

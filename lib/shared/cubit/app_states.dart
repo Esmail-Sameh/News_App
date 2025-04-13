@@ -1,34 +1,34 @@
 abstract class AppStates {}
 
-class AppInitialStates extends AppStates{}
+class AppInitialState extends AppStates {}
 
-class AppButtonNavStates extends AppStates{}
+class AppButtonNavState extends AppStates {}
 
-class AppGetBusinessLodingStates extends AppStates{}
+class AppGetBusinessLodingState extends AppStates {}
 
-class AppGetBusinessDataSuccess extends AppStates{}
+class AppGetBusinessDataSuccessState extends AppStates {}
 
-class AppGetBusinessDataError extends AppStates{
+class AppGetBusinessDataErrorState extends AppStates {
   final String error;
-  AppGetBusinessDataError(this.error);
+  AppGetBusinessDataErrorState(this.error);
 }
 
-class AppGetSportsLodingStates extends AppStates{}
+class AppGetSportsLodingState extends AppStates {}
 
-class AppGetSportsDataSuccess extends AppStates{}
+class AppGetSportsDataSuccessState extends AppStates {}
 
-class AppGetSportsDataError extends AppStates{
+class AppGetSportsDataErrorState extends AppStates {
   final String error;
-  AppGetSportsDataError(this.error);
+  AppGetSportsDataErrorState(this.error);
 }
 
-class AppGetSciencesLodingStates extends AppStates{}
+class AppGetSciencesLodingState extends AppStates {}
 
-class AppGetSciencesDataSuccess extends AppStates{}
+class AppGetSciencesDataSuccessState extends AppStates {}
 
-class AppGetSciencesDataError extends AppStates{
+class AppGetSciencesDataErrorState extends AppStates {
   final String error;
-  AppGetSciencesDataError(this.error);
+  AppGetSciencesDataErrorState(this.error);
 }
 
-
+class AppChangeModeState extends AppStates{}
