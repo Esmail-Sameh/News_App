@@ -1,5 +1,3 @@
-import 'package:news_app/shared/constant/app_colors.dart';
-
 import 'app_imports.dart';
 
 class AppTheme {

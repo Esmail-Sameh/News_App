@@ -67,9 +67,9 @@ class AppCubit extends Cubit<AppStates> {
     if (sports.length == 0) {
       emit(AppGetSportsLodingState());
       DioHelper.getData(url: METHOD, query: {
-        AppString.country : 'us',
-        AppString.category : AppString.sportsCategory,
-        AppString.apiKey : APIKEY,
+        AppString.country: 'us',
+        AppString.category: AppString.sportsCategory,
+        AppString.apiKey: APIKEY,
       }).then(
         (value) {
           sports = value.data['articles'];
@@ -102,7 +102,6 @@ class AppCubit extends Cubit<AppStates> {
       ).catchError(
         (error) {
           emit(AppGetSciencesDataErrorState(error.toString()));
-          //print(error.toString);
         },
       );
     } else {
@@ -110,9 +109,10 @@ class AppCubit extends Cubit<AppStates> {
     }
   }
 
-  bool isDark = false;
-  void changeAppMode(){
-    isDark = !isDark;
+  bool isDark = CacheHelper.getBoolean(key: "isDark") ?? false;
+  void changeThemeMode() {
+      isDark = !isDark;
+      CacheHelper.putBoolean(key: "isDark", value: isDark);
     emit(AppChangeModeState());
   }
 

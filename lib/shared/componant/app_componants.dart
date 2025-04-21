@@ -1,5 +1,3 @@
-import 'package:news_app/shared/constant/app_colors.dart';
-
 import '../constant/app_imports.dart';
 
 Widget articlesItem(context, data) => Row(

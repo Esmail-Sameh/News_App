@@ -19,7 +19,7 @@ class HomeLayout extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () {
-                  cubit.changeAppMode();
+                  cubit.changeThemeMode();
                 },
                 icon: const Icon(Icons.light_mode_outlined),
               ),

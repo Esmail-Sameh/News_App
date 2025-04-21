@@ -1,9 +1,12 @@
 import 'package:news_app/shared/constant/app_imports.dart';
 
 
-void main() {
+
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = const SimpleBlocObserver();
   DioHelper.init();
+  await CacheHelper.init();
   runApp(const MyApp());
 }
 

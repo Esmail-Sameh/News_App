@@ -1,4 +1,4 @@
-import '../constant/app_imports.dart';
+import '../../constant/app_imports.dart';
 
 class DioHelper {
   static late Dio dio;
