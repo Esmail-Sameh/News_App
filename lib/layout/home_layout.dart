@@ -1,3 +1,5 @@
+import 'package:news_app/modules/search/search_screen.dart';
+
 import '../shared/constant/app_imports.dart';
 
 class HomeLayout extends StatelessWidget {
@@ -13,10 +15,14 @@ class HomeLayout extends StatelessWidget {
           appBar: AppBar(
             title: Text(cubit.appTitle[cubit.curentIndex]),
             actions: [
+              ///  Search Icon  ///
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                   Navigator.push(context, MaterialPageRoute(builder: (context) => SearchScreen(),) );
+                },
                 icon: const Icon(Icons.search),
               ),
+              ///  Change Theme Mode Icon  ///
               IconButton(
                 onPressed: () {
                   cubit.changeThemeMode();

@@ -111,10 +111,28 @@ class AppCubit extends Cubit<AppStates> {
 
   bool isDark = CacheHelper.getBoolean(key: "isDark") ?? false;
   void changeThemeMode() {
-      isDark = !isDark;
-      CacheHelper.putBoolean(key: "isDark", value: isDark);
+    isDark = !isDark;
+    CacheHelper.putBoolean(key: "isDark", value: isDark);
     emit(AppChangeModeState());
   }
 
+  //https://newsapi.org/v2/everything?q=apple&apiKey=92efe8b0717e4c8c8377ea5082ccd340
 
+  List<dynamic> searchData = [];
+  void getSearchData({required String q}) async {
+    emit(AppGetSearchLodingState());
+
+    await DioHelper.getData(url: SEARCH_METHOD, query:{
+      'q':q,
+      AppString.apiKey: APIKEY,
+    }).then((value) {
+      emit(AppGetSearchDataSuccessState());
+      searchData = value.data['articles'];
+      print(searchData.length);
+
+    },).catchError((error){
+      emit(AppGetSearchDataErrorState(error.toString()));
+      print(error.toString());
+    });
+  }
 }

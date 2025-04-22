@@ -3,6 +3,9 @@ import 'app_imports.dart';
 class AppTheme {
   static ThemeData lightTheme = ThemeData(
     primarySwatch: Colors.deepOrange,
+    colorScheme: ColorScheme.light(
+      primary: AppColors.primaryColor,
+    ),
     primaryColor: AppColors.primaryColor,
     scaffoldBackgroundColor: AppColors.whiteColor,
     appBarTheme: const AppBarTheme(
@@ -37,7 +40,11 @@ class AppTheme {
   );
 
   static ThemeData darkTheme = ThemeData(
-    primarySwatch: Colors.deepOrange,
+
+    colorScheme: ColorScheme.light(
+      primary: AppColors.primaryColor,
+    ),
+    primaryColorLight: AppColors.primaryColor,
     primaryColor: AppColors.primaryColor,
     scaffoldBackgroundColor: AppColors.backgroundDarkColor,
     appBarTheme: const AppBarTheme(
