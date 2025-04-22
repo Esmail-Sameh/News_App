@@ -4,9 +4,7 @@ class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(AppInitialState());
 
   static AppCubit get(context) => BlocProvider.of(context);
-
   int curentIndex = 0;
-
   List<BottomNavigationBarItem> item = [
     const BottomNavigationBarItem(
       icon: Icon(Icons.business),
@@ -58,7 +56,6 @@ class AppCubit extends Cubit<AppStates> {
           error.toString(),
         ),
       );
-      print(error.toString());
     });
   }
 
@@ -78,7 +75,6 @@ class AppCubit extends Cubit<AppStates> {
       ).catchError(
         (error) {
           emit(AppGetSportsDataErrorState(error.toString()));
-          //print(error.toString);
         },
       );
     } else {
@@ -116,23 +112,20 @@ class AppCubit extends Cubit<AppStates> {
     emit(AppChangeModeState());
   }
 
-  //https://newsapi.org/v2/everything?q=apple&apiKey=92efe8b0717e4c8c8377ea5082ccd340
-
   List<dynamic> searchData = [];
   void getSearchData({required String q}) async {
     emit(AppGetSearchLodingState());
 
-    await DioHelper.getData(url: SEARCH_METHOD, query:{
-      'q':q,
+    await DioHelper.getData(url: SEARCH_METHOD, query: {
+      'q': q,
       AppString.apiKey: APIKEY,
-    }).then((value) {
-      emit(AppGetSearchDataSuccessState());
-      searchData = value.data['articles'];
-      print(searchData.length);
-
-    },).catchError((error){
+    }).then(
+      (value) {
+        emit(AppGetSearchDataSuccessState());
+        searchData = value.data['articles'];
+      },
+    ).catchError((error) {
       emit(AppGetSearchDataErrorState(error.toString()));
-      print(error.toString());
     });
   }
 }

@@ -1,3 +1,4 @@
+import 'package:news_app/modules/web_view/web_view.dart';
 import 'package:news_app/shared/constant/app_imports.dart';
 import 'package:news_app/test.dart';
 
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             home: HomeLayout(),
-            //home: MyTextFieldPage(),
+            //home: WebViewScreen(),
             theme: AppTheme.lightTheme,
             darkTheme: AppTheme.darkTheme,
             themeMode: cubit.isDark ?ThemeMode.dark :ThemeMode.light,

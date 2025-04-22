@@ -16,6 +16,7 @@ export 'package:news_app/modules/sports/sports_screen.dart';
 export 'package:news_app/shared/componant/app_componants.dart';
 export 'package:news_app/modules/business/business_screen.dart';
 export 'package:news_app/modules/sciences/sciences_screen.dart';
+export 'package:flutter_inappwebview/flutter_inappwebview.dart';
 export 'package:news_app/shared/network/local/cache_helper.dart';
 export 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 
