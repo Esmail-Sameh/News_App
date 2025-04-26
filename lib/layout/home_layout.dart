@@ -1,5 +1,3 @@
-import 'package:news_app/modules/search/search_screen.dart';
-
 import '../shared/constant/app_imports.dart';
 
 class HomeLayout extends StatelessWidget {
@@ -18,7 +16,11 @@ class HomeLayout extends StatelessWidget {
               ///  Search Icon  ///
               IconButton(
                 onPressed: () {
-                   Navigator.push(context, MaterialPageRoute(builder: (context) => SearchScreen(),) );
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SearchScreen(),
+                      ));
                 },
                 icon: const Icon(Icons.search),
               ),
@@ -32,8 +34,11 @@ class HomeLayout extends StatelessWidget {
             ],
           ),
           body: Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
             child: cubit.screens[cubit.curentIndex],
+          ).redacted(
+            context: context,
+            redact: true,
           ),
           bottomNavigationBar: BottomNavigationBar(
             items: cubit.item,

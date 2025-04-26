@@ -9,17 +9,7 @@ class SciencesScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         var list = AppCubit.get(context).sciences;
-        return ConditionalBuilder(
-          condition: list.length > 0,
-          builder: (context) => ListView.separated(
-            itemBuilder: (context, index) =>
-                articlesItem(context, list[index],),
-            separatorBuilder: (context, index) =>  myDivider(),
-            itemCount: list.length,
-          ),
-          fallback: (context) =>
-              lodingItem(context),
-        );
+        return articlesBuilder(list, context);
       },
     );
   }

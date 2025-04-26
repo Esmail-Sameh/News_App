@@ -8,18 +8,8 @@ class BusinessScreen extends StatelessWidget {
     return BlocConsumer<AppCubit, AppStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        var cubit = AppCubit.get(context);
-        return ConditionalBuilder(
-          condition: state != AppGetBusinessLodingState ,
-          builder: (context) => ListView.separated(
-            itemBuilder: (context, index) =>
-                articlesItem(context, cubit.busniess[index]),
-            separatorBuilder: (context, index) => myDivider(),
-            itemCount: cubit.busniess.length,
-          ),
-          fallback: (context) => lodingItem(context),
-
-        );
+        var list = AppCubit.get(context).busniess;
+        return articlesBuilder(list, context);
       },
     );
   }

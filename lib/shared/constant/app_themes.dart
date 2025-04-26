@@ -3,12 +3,12 @@ import 'app_imports.dart';
 class AppTheme {
   static ThemeData lightTheme = ThemeData(
     primarySwatch: Colors.deepOrange,
-    colorScheme: ColorScheme.light(
-      primary: AppColors.primaryColor,
-    ),
+    colorScheme: const ColorScheme.light(
+        primary: AppColors.primaryColor, brightness: Brightness.light),
     primaryColor: AppColors.primaryColor,
     scaffoldBackgroundColor: AppColors.whiteColor,
     appBarTheme: const AppBarTheme(
+      surfaceTintColor: AppColors.whiteColor,
       color: AppColors.whiteColor,
       elevation: 0.0,
       titleTextStyle: TextStyle(
@@ -32,23 +32,27 @@ class AppTheme {
     ),
     textTheme: const TextTheme(
       bodyMedium: TextStyle(
-        color:AppColors.blackColor,
+        color: AppColors.blackColor,
         fontSize: 17,
         fontWeight: FontWeight.w600,
+      ),
+      bodySmall: TextStyle(
+        color: AppColors.blackColor,
+        fontSize: 14,
+        fontWeight: FontWeight.w300,
       ),
     ),
   );
 
   static ThemeData darkTheme = ThemeData(
-
-    colorScheme: ColorScheme.light(
-      primary: AppColors.primaryColor,
-    ),
+    colorScheme: const ColorScheme.light(
+        primary: AppColors.primaryColor, brightness: Brightness.dark),
     primaryColorLight: AppColors.primaryColor,
     primaryColor: AppColors.primaryColor,
     scaffoldBackgroundColor: AppColors.backgroundDarkColor,
     appBarTheme: const AppBarTheme(
       color: AppColors.backgroundDarkColor,
+      surfaceTintColor: AppColors.backgroundDarkColor,
       elevation: 0.0,
       titleTextStyle: TextStyle(
         color: AppColors.whiteColor,
@@ -71,9 +75,14 @@ class AppTheme {
     ),
     textTheme: const TextTheme(
       bodyMedium: TextStyle(
-        color:AppColors.whiteColor,
+        color: AppColors.whiteColor,
         fontSize: 17,
         fontWeight: FontWeight.w600,
+      ),
+      bodySmall: TextStyle(
+        color: AppColors.whiteColor,
+        fontSize: 14,
+        fontWeight: FontWeight.w300,
       ),
     ),
   );

@@ -1,12 +1,34 @@
-import 'package:news_app/modules/web_view/web_view.dart';
-
 import '../constant/app_imports.dart';
 
-Widget articlesItem(context, data, ) => GestureDetector(
-  onTap: () {
-    Navigator.push(context, MaterialPageRoute(builder:(context) => WebViewScreen(url: data["url"],)),);
-  },
-  child: Row(
+Widget articlesBuilder(list, context, {bool isSearching = false}) =>
+    ConditionalBuilder(
+      condition: list.length > 0,
+      builder: (context) => ListView.separated(
+        itemBuilder: (context, index) => articlesItem(
+          context,
+          list[index],
+        ),
+        separatorBuilder: (context, index) => myDivider(),
+        itemCount: list.length,
+      ),
+      fallback: (context) => isSearching ? Container() : lodingItem(context),
+    );
+
+Widget articlesItem(
+  context,
+  data,
+) =>
+    GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => WebViewScreen(
+                    url: data["url"],
+                  )),
+        );
+      },
+      child: Row(
         children: [
           /// image ///
           Container(
@@ -15,9 +37,11 @@ Widget articlesItem(context, data, ) => GestureDetector(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
               image: DecorationImage(
-                image: NetworkImage(
-                  "${data['urlToImage']}",
-                ),
+                image: data['urlToImage'] == null
+                    ? const AssetImage("assets/images/empty_image.jpg")
+                    : NetworkImage(
+                        "${data['urlToImage']}",
+                      ),
                 fit: BoxFit.cover,
               ),
             ),
@@ -28,7 +52,7 @@ Widget articlesItem(context, data, ) => GestureDetector(
 
           /// title ///
           Expanded(
-            child: Container(
+            child: SizedBox(
               height: MediaQuery.of(context).size.height / 7,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,7 +81,7 @@ Widget articlesItem(context, data, ) => GestureDetector(
           ),
         ],
       ),
-);
+    );
 
 Widget myDivider() => const Padding(
       padding: EdgeInsets.symmetric(vertical: 15),
@@ -69,7 +93,7 @@ Widget myDivider() => const Padding(
 
 Widget lodingItem(context) => const Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         CircularProgressIndicator(
           color: AppColors.primaryColor,
@@ -78,7 +102,7 @@ Widget lodingItem(context) => const Center(
           height: 7,
         ),
         Text(
-          "Loding",
+          "Loading",
           style: TextStyle(fontSize: 15),
         ),
       ],

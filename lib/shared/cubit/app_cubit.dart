@@ -110,6 +110,12 @@ class AppCubit extends Cubit<AppStates> {
     isDark = !isDark;
     CacheHelper.putBoolean(key: "isDark", value: isDark);
     emit(AppChangeModeState());
+    changeColorText();
+  }
+
+  void changeColorText() {
+    Future.delayed(
+        const Duration(milliseconds: 150), () => emit(AppChangeModeState()));
   }
 
   List<dynamic> searchData = [];
